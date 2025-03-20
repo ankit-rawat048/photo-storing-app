@@ -1,55 +1,79 @@
-/* SignUp.css */
-.container {
+/* Dashboard Container */
+.dashboard-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f3f4f6;
-}
-
-.signup-form {
-    background: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+    background-color: #f5f5f5;
+    min-height: 100vh;
 }
 
-.form-title {
+/* Title */
+.dashboard-title {
     font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.input-field {
-    width: 100%;
+/* Upload Section */
+.upload-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.file-input {
     padding: 10px;
-    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
-    transition: border 0.3s ease;
+    background: white;
+    font-size: 14px;
 }
 
-.input-field:focus {
-    border-color: #2563eb;
-    outline: none;
-    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-}
-
-.submit-button {
-    width: 100%;
-    background-color: #2563eb;
+.upload-button {
+    padding: 10px 15px;
+    background: #007bff;
     color: white;
-    padding: 10px;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.submit-button:hover {
-    background-color: #1e40af;
+.upload-button:hover {
+    background: #0056b3;
+}
+
+.upload-button:disabled {
+    background: gray;
+    cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Photo Grid */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.photo-item {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.photo-item:hover {
+    transform: scale(1.05);
 }
