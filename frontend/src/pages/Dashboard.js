@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Style.css"; // Ensure this file exists for styling
+import "../styles/Dashboard.css"; // Ensure this file exists for styling
 
 const Dashboard = () => {
     const [photos, setPhotos] = useState([]);
