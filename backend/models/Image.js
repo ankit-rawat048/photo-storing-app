@@ -1,12 +1,8 @@
 const mongoose = require("mongoose");
 
-const imageSchema = new mongoose.Schema({
-    filename: String,
-    contentType: String,
-    imageUrl: String, // If using cloud storage like AWS S3, Firebase
-    createdAt: { type: Date, default: Date.now }
+const ImageSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    imageUrl: { type: String, required: true },
 });
 
-const Image = mongoose.model("Image", imageSchema);
-
-module.exports = Image;
+module.exports = mongoose.model("Image", ImageSchema);

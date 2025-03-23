@@ -1,0 +1,32 @@
+.logout-container {
+    text-align: center;
+    margin-top: 100px;
+    font-family: Arial, sans-serif;
+}
+
+.logout-container h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.logout-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}
+
+
+.backbutton {
+    position: fixed;
+    left: 0;
+    top: 0;
+}

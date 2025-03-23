@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../styles/Signin.css';
 
 const SignIn = () => {
@@ -38,37 +38,51 @@ const SignIn = () => {
 
     return (
         <div className="container">
-            <form onSubmit={loginUser} className="signin-form">
-                <h2 className="form-title">Sign In</h2>
+            <div className="signin-form">
+                {/* Left Section */}
+                <div className="left-section">
+                    <h1>Welcome to Website</h1>
+                    <p> where you can upload your photos securely</p>
+                </div>
 
-                {error && <p className="error-message">{error}</p>}
+                {/* Right Section */}
+                <div className="right-section">
+                    <form onSubmit={loginUser}>
+                        <h2 className="form-title">User Login</h2>
 
-                <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="input-field"
-                    required
-                />
+                        {error && <p className="error-message">{error}</p>}
 
-                <input
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="input-field"
-                    required
-                />
+                        <input
+                            type="email"
+                            placeholder="Username"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="input-field"
+                            required
+                        />
 
-                <button type="submit" className="submit-button" disabled={loading}>
-                    {loading ? "Signing In..." : "Sign In"}
-                </button>
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="input-field"
+                            required
+                        />
 
-                <p className="redirect-text">
-                    Don't have an account? <span onClick={() => navigate("/signup")} className="link">Sign up here</span>.
-                </p>
-            </form>
+                        <div className="remember-container">
+                            <label>
+                                <p> create a new one</p>
+                            </label>
+                            <p className="link"><Link to={'/signUp'}>Sign up?</Link></p>
+                        </div>
+
+                        <button type="submit" className="submit-button" disabled={loading}>
+                            {loading ? "Signing In..." : "Login"}
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };

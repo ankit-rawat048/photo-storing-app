@@ -1,0 +1,76 @@
+.how-to-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+}
+
+.feature-section, .steps-section {
+    margin-top: 20px;
+}
+
+h2 {
+    color: #222;
+    margin-bottom: 10px;
+}
+
+ul, ol {
+    margin-left: 20px;
+    color: #444;
+}
+
+ul li, ol li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+strong {
+    color: #000;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.backbutton {
+    display: block;
+    width: 120px;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.backbutton a {
+    color: white;
+    text-decoration: none;
+}
+
+.backbutton:hover {
+    background-color: #0056b3;
+}
