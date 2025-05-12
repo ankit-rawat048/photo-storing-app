@@ -11,7 +11,7 @@ const Logout = () => {
 
         try {
             // Call backend logout API (if needed)
-            await fetch("http://localhost:5000/api/auth/logout", {
+            await fetch("https://photo-storing-app-1.onrender.com/api/auth/logout", {
                 method: "POST", // Change to GET if needed
                 headers: { "Content-Type": "application/json" },
             });

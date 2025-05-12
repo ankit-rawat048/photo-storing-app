@@ -15,7 +15,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchPhotos = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/upload", {
+                const response = await fetch("https://photo-storing-app-1.onrender.com/api/upload", {
                     headers: {
                         "Authorization": `Bearer ${token}`, // 🔥 Send user token
                     },
