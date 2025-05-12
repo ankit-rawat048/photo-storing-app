@@ -10,15 +10,26 @@ router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    // Validate inputs
+    if (!name || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Check if the user already exists
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ error: "User already exists" });
 
-    user = new User({ name, email, password });
+    // Hash the password before saving the user
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    user = new User({ name, email, password: hashedPassword });
     await user.save();
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Signup Error:", error); // Log the error for debugging
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
@@ -36,7 +47,8 @@ router.post("/login", async (req, res) => {
     const token = user.generateAuthToken();
     res.json({ token });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Login Error:", error); // Log the error for debugging
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
