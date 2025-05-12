@@ -9,11 +9,22 @@ const uploadRoutes = require("./routes/upload");
 const app = express();
 app.use(express.json());
 
-// CORS Configuration
+const allowedOrigins = [
+  "http://localhost:3000", // local dev
+  "https://photo-storing-app.vercel.app" // production frontend
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN || "*",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
+
 
 // Routes
 app.use("/api/auth", authRoutes);
