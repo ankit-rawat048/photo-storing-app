@@ -5,7 +5,7 @@ const User = require("../models/User");
 
 const router = express.Router();
 
-// User Registration
+// User Registration (Sign up)
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -19,16 +19,13 @@ router.post("/signup", async (req, res) => {
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ error: "User already exists" });
 
-    // Hash the password before saving the user
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
-    user = new User({ name, email, password: hashedPassword });
+    // Create a new user (password is hashed automatically in schema)
+    user = new User({ name, email, password });
     await user.save();
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.error("Signup Error:", error); // Log the error for debugging
+    console.error("Signup Error:", error); // Log error for debugging
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -38,16 +35,26 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Validate inputs
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
+
+    // Find the user by email
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "Invalid credentials" });
 
+    // Compare entered password with stored hashed password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
+    // Generate JWT token
     const token = user.generateAuthToken();
+
+    // Return the token
     res.json({ token });
   } catch (error) {
-    console.error("Login Error:", error); // Log the error for debugging
+    console.error("Login Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });

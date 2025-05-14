@@ -11,13 +11,14 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
     try {
         const image = new Image({
             userId: req.user.id,
-            imageUrl: req.file.buffer.toString("base64"),
+            imageUrl: req.file.buffer.toString("base64"), // This is still fine, but consider storing image on a file server
         });
 
         await image.save();
         res.status(201).json({ message: "Image uploaded successfully", image });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error("Upload Error:", error); // Log error for debugging
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
@@ -27,7 +28,8 @@ router.get("/", auth, async (req, res) => {
         const images = await Image.find({ userId: req.user.id });
         res.json(images);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error("Fetch Images Error:", error); // Log error for debugging
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
@@ -46,6 +48,7 @@ router.delete("/:id", auth, async (req, res) => {
         await Image.findByIdAndDelete(req.params.id);
         res.json({ success: true, message: "Image deleted successfully!" });
     } catch (error) {
+        console.error("Delete Image Error:", error); // Log error for debugging
         res.status(500).json({ error: "Failed to delete image!" });
     }
 });
