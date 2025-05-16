@@ -52,7 +52,7 @@ const Dashboard = () => {
         formData.append("image", image);
 
         try {
-            const response = await fetch("http://localhost:5000/api/upload", {
+            const response = await fetch("https://photo-storing-app-1.onrender.com/api/upload", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`, // 🔥 Send user token
@@ -77,7 +77,7 @@ const Dashboard = () => {
 
     const deletePhoto = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/upload/${id}`, {
+            const response = await fetch(`https://photo-storing-app-1.onrender.com/api/upload/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`, // 🔥 Ensure user is authorized
