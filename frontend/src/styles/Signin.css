@@ -112,3 +112,17 @@
 .link:hover {
     text-decoration: underline;
 }
+
+
+@media(max-width:768px){
+    .signin-form {
+        flex-direction: column;
+    height: 100vh;
+    }
+
+    .left-section{
+        padding:0;
+        height:50vh;
+    }
+}
+
